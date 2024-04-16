@@ -1,5 +1,8 @@
 package com.noel.mysite03.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,15 +46,26 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@RequestParam(value="email", required=true, defaultValue="")String email,
 			@RequestParam(value="password", required=true, defaultValue="")String password,
-			Model model) {
+			Model model,
+			HttpServletRequest request
+			) {
 		UserVo authUser = userRepository.findByEmailAndPassword(email, password);
 		if(authUser == null) {
 			model.addAttribute("email",email);
 			model.addAttribute("result","fail");
-			
 			return "user/login";
 		}
+		HttpSession session = request.getSession(true);
+		session.setAttribute("authUser", authUser);
 		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("authUser");
+		session.invalidate();
 		return "redirect:/";
 	}
 }
