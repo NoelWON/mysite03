@@ -72,7 +72,7 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	// 업데이트 폼 진행중
+	// 업데이트 진행완료
 	@RequestMapping(value="/updateform", method=RequestMethod.GET)
 	public String update(HttpServletRequest request) {
 		HttpSession session = request.getSession();
