@@ -89,6 +89,8 @@ public class UserController {
 		
 		return "user/updateform";
 	}
+	
+	// 하나로 합치기
 	@RequestMapping(value="/updateform",method=RequestMethod.POST)
 	public String update() {
 		return null;
