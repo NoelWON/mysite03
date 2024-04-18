@@ -50,6 +50,7 @@ public class UserController {
 			HttpServletRequest request
 			) {
 		UserVo authUser = userRepository.findByEmailAndPassword(email, password);
+		
 		if(authUser == null) {
 			model.addAttribute("email",email);
 			model.addAttribute("result","fail");
@@ -57,6 +58,8 @@ public class UserController {
 		}
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
+		
+		System.out.println(authUser);
 		
 		return "redirect:/";
 	}
@@ -67,5 +70,22 @@ public class UserController {
 		session.removeAttribute("authUser");
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	// 업데이트 폼 진행중
+	@RequestMapping(value="/updateform", method=RequestMethod.GET)
+	public String update(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		Long no = authUser.getNo();
+		System.out.println(no);
+
+		UserVo userVo = userRepository.findByNo(no);
+		
+		System.out.println(userVo);
+		
+		request.setAttribute("userVo", userVo);
+		
+		return "user/updateform";
 	}
 }

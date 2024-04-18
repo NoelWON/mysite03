@@ -23,8 +23,12 @@ public class UserRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Autowired
-	private DataSource dataSource;
+	
+	// getconnection을 사용하기 위함 
+	// conn = dataSource.getConnection();
+	// sqlSession 을 사용하면서 내부에서 처리함
+//	@Autowired
+//	private DataSource dataSource;
 	// mybatis
 	
 	
@@ -76,12 +80,15 @@ public class UserRepository {
 //		return result;
 	}
 	
-	
 	public UserVo findByEmailAndPassword(String email, String password) {
 		
 		Map<String,Object> map = new HashMap<>();
 		map.put("email",email);
 		map.put("password",password);
+//		UserVo vo = sqlSession.selectOne("user.findByEmailAndPassword",map);
+//		System.out.println("ddd ; "+vo);
+//		return null;
+		
 		return sqlSession.selectOne("user.findByEmailAndPassword",map);
 		
 //		UserVo result = null;
@@ -141,52 +148,60 @@ public class UserRepository {
 
 
 	public UserVo findByNo(Long no) {
-		UserVo result = null;
-		ResultSet rs = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
 		
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			String url = "jdbc:mariadb://192.168.100.8:3307/webdb?chatset=utf8";
-			conn = DriverManager.getConnection(url,"webdb","webdb");
-			System.out.println("connection success!");
-			String sql = "select no,name,email,password,gender from user where no=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, no);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {				
-				no = rs.getLong(1);
-				String name = rs.getString(2);
-				String email = rs.getString(3);
-				String password = rs.getString(4);
-				String gender = rs.getString(5);
-				result = new UserVo();
-				result.setName(name);
-				result.setEmail(email);
-				result.setPassword(password);
-				result.setGender(gender);
-			}
-		} catch (ClassNotFoundException e) {
-			System.out.println("shit Driver loading fail:   " + e);
-		} catch (SQLException e) {
-			System.out.println("Error:   " + e);
-		}finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}	
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
+		// no로 유저의 정보를 가져와야함
+		Long num = no;
+		System.out.println("findByNo 진입");
+		System.out.println(num);
+		return sqlSession.selectOne("user.findByNo",num);
+		
+//		
+//		UserVo result = null;
+//		ResultSet rs = null;
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		
+//		try {
+//			Class.forName("org.mariadb.jdbc.Driver");
+//			String url = "jdbc:mariadb://192.168.100.8:3307/webdb?chatset=utf8";
+//			conn = DriverManager.getConnection(url,"webdb","webdb");
+//			System.out.println("connection success!");
+//			String sql = "select no,name,email,password,gender from user where no=?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setLong(1, no);
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {				
+//				no = rs.getLong(1);
+//				String name = rs.getString(2);
+//				String email = rs.getString(3);
+//				String password = rs.getString(4);
+//				String gender = rs.getString(5);
+//				result = new UserVo();
+//				result.setName(name);
+//				result.setEmail(email);
+//				result.setPassword(password);
+//				result.setGender(gender);
+//			}
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("shit Driver loading fail:   " + e);
+//		} catch (SQLException e) {
+//			System.out.println("Error:   " + e);
+//		}finally {
+//			try {
+//				if(rs != null) {
+//					rs.close();
+//				}
+//				if(pstmt != null) {
+//					pstmt.close();
+//				}
+//				if(conn != null) {
+//					conn.close();
+//				}	
+//			}catch(SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return result;
 	}
 
 	public Boolean update(UserVo vo) {

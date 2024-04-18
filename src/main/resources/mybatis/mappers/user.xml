@@ -7,10 +7,16 @@
 		insert into user values(null,#{name },#{email },password(#{password }),#{gender})
 		]]>
 	</insert>
-	
+
 	<select id="findByEmailAndPassword" parameterType="map" resultType="uservo">
 		<![CDATA[
 		select no, name from user where email =#{email } and password = password(#{password })
+		]]>
+	</select>
+
+	<select id="findByNo" parameterType="Long" resultType="uservo">
+		<![CDATA[
+		select no,name,email,password,gender from user where no=#{num }
 		]]>
 	</select>
 </mapper>
