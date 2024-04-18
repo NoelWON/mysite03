@@ -58,7 +58,7 @@ public class UserController {
 		}
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
-		
+		// authUser 확인
 		System.out.println(authUser);
 		
 		return "redirect:/";
@@ -82,6 +82,7 @@ public class UserController {
 
 		UserVo userVo = userRepository.findByNo(no);
 		
+		// userVo 확인
 		System.out.println(userVo);
 		
 		request.setAttribute("userVo", userVo);
