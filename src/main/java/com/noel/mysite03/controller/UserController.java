@@ -89,4 +89,8 @@ public class UserController {
 		
 		return "user/updateform";
 	}
+	@RequestMapping(value="/updateform",method=RequestMethod.POST)
+	public String update() {
+		return null;
+	}
 }
