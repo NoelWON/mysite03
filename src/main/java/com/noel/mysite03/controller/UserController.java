@@ -78,7 +78,6 @@ public class UserController {
 		HttpSession session = request.getSession();
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		Long no = authUser.getNo();
-		System.out.println(no);
 
 		UserVo userVo = userRepository.findByNo(no);
 		
@@ -91,8 +90,32 @@ public class UserController {
 	}
 	
 	// 하나로 합치기
-	@RequestMapping(value="/updateform",method=RequestMethod.POST)
-	public String update() {
-		return null;
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public String update(@RequestParam(value="name", required=true, defaultValue="")String name,
+			@RequestParam(value="password", required=true, defaultValue="")String password,
+			@RequestParam(value="gender", required=true, defaultValue="")String gender,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		Long no = authUser.getNo();
+		
+		System.out.println("로그인 유저현재 정보: "+authUser);
+		
+		String edname = name;
+		String edpassword = password;
+		String edgender = gender;
+				
+		UserVo edvo = new UserVo();
+		edvo.setNo(no);
+		edvo.setName(edname);
+		edvo.setPassword(edpassword);
+		edvo.setGender(edgender);
+		
+		System.out.println("수정한 정보: "+edvo);
+		// repository로 넘기기
+		userRepository.update(edvo);
+		
+		return "user/updatesuccess";
 	}
 }

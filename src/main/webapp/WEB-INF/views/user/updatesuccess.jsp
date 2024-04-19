@@ -18,7 +18,7 @@
 			<div id="user">
 				<p class="jr-success">
 					수정이 완료되었습니다. <br>
-					<br> <a href="/mysite02/user?a=Loginform">로그인하기</a>
+					<br> <a href="${pageContext.request.contextPath }">홈으로</a>
 				</p>
 			</div>
 		</div>

@@ -152,7 +152,6 @@ public class UserRepository {
 		// no로 유저의 정보를 가져와야함
 		Long num = no;
 		System.out.println("findByNo 진입");
-		System.out.println(num);
 		return sqlSession.selectOne("user.findByNo",num);
 		
 //		
@@ -205,53 +204,59 @@ public class UserRepository {
 	}
 
 	public Boolean update(UserVo vo) {
-		Boolean result = false;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		System.out.println("repository 진입");
+		System.out.println("repository: "+vo);
+		return 1 == sqlSession.update("user.update",vo);
 		
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			String url = "jdbc:mariadb://192.168.100.8:3307/webdb?chatset=utf8";
-			conn = DriverManager.getConnection(url,"webdb","webdb");
-			System.out.println("connection success!");
-			
-			if(vo.getPassword()==null || vo.getPassword()=="") {
-				String sql = "update user Set name = ?, gender = ? where no = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, vo.getName());
-				pstmt.setString(2, vo.getGender());
-				pstmt.setLong(3, vo.getNo());
-				
-				int count = pstmt.executeUpdate();
-				result = count == 1;
-			}else {
-				String sql = "update user Set name = ?, password = password(?), gender = ? where no = ?";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, vo.getName());
-				pstmt.setString(2, vo.getPassword());
-				pstmt.setString(3, vo.getGender());
-				pstmt.setLong(4, vo.getNo());
-				
-				int count = pstmt.executeUpdate();
-				result = count == 1;
-			}
-		}catch (ClassNotFoundException e) {
-			System.out.println("shit Driver loading fail:   " + e);
-		} catch (SQLException e) {
-			System.out.println("Error:   " + e);
-		}		finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}	
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
+		
+		
+//		Boolean result = false;
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		
+//		try {
+//			Class.forName("org.mariadb.jdbc.Driver");
+//			String url = "jdbc:mariadb://192.168.100.8:3307/webdb?chatset=utf8";
+//			conn = DriverManager.getConnection(url,"webdb","webdb");
+//			System.out.println("connection success!");
+//			
+//			if(vo.getPassword()==null || vo.getPassword()=="") {
+//				String sql = "update user Set name = ?, gender = ? where no = ?";
+//				pstmt = conn.prepareStatement(sql);
+//				pstmt.setString(1, vo.getName());
+//				pstmt.setString(2, vo.getGender());
+//				pstmt.setLong(3, vo.getNo());
+//				
+//				int count = pstmt.executeUpdate();
+//				result = count == 1;
+//			}else {
+//				String sql = "update user Set name = ?, password = password(?), gender = ? where no = ?";
+//				
+//				pstmt = conn.prepareStatement(sql);
+//				pstmt.setString(1, vo.getName());
+//				pstmt.setString(2, vo.getPassword());
+//				pstmt.setString(3, vo.getGender());
+//				pstmt.setLong(4, vo.getNo());
+//				
+//				int count = pstmt.executeUpdate();
+//				result = count == 1;
+//			}
+//		}catch (ClassNotFoundException e) {
+//			System.out.println("shit Driver loading fail:   " + e);
+//		} catch (SQLException e) {
+//			System.out.println("Error:   " + e);
+//		}		finally {
+//			try {
+//				if(pstmt != null) {
+//					pstmt.close();
+//				}
+//				if(conn != null) {
+//					conn.close();
+//				}	
+//			}catch(SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return result;
 	}
 }
