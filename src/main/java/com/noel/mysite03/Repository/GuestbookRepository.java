@@ -18,4 +18,8 @@ public class GuestbookRepository {
 
 		return sqlSession.selectList("guestbook.findAll");
 	}
+
+	public boolean insert(GuestbookVo guestbookVo) {
+		return 1 == sqlSession.insert("guestbook.insert",guestbookVo);
+	}
 }

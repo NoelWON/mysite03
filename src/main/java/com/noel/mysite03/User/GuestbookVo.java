@@ -4,7 +4,7 @@ public class GuestbookVo {
 
 	private Long no;
 	private String name;
-	private String email;
+	private String content;
 	private String password;
 	private String regDate;
 	public Long getNo() {
@@ -19,11 +19,11 @@ public class GuestbookVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmail() {
-		return email;
+	public String getContent() {
+		return content;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getPassword() {
 		return password;
@@ -39,7 +39,7 @@ public class GuestbookVo {
 	}
 	@Override
 	public String toString() {
-		return "GuestbookVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", regDate="
+		return "GuestbookVo [no=" + no + ", name=" + name + ", content=" + content + ", password=" + password + ", regDate="
 				+ regDate + "]";
 	}
 	

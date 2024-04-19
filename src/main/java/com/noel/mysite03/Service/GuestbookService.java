@@ -18,4 +18,8 @@ public class GuestbookService {
 		
 		return guestbookRepository.findAll();
 	}
+
+	public boolean write(GuestbookVo guestbookVo) {
+		return guestbookRepository.insert(guestbookVo);
+	}
 }
