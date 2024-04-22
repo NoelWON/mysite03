@@ -42,7 +42,7 @@
 									<td>${vo.no }</td>
 									<td>${vo.name }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath }/guestbook/remove/${vo.no }">삭제</a></td>
 								</tr>
 								<tr>
 									<td colspan=4>${vo.content }</td>

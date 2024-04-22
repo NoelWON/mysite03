@@ -22,4 +22,8 @@ public class GuestbookService {
 	public boolean write(GuestbookVo guestbookVo) {
 		return guestbookRepository.insert(guestbookVo);
 	}
+
+	public Boolean remove(Long no, String password) {
+		return guestbookRepository.remove(no,password);
+	}
 }
