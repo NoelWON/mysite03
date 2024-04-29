@@ -55,7 +55,6 @@ public class BoardController {
 		
 		System.out.println(boardVo);
 		// 유저 no, 제목, 내용이 들어가야함
-		// boardVo 에 user_no 와 username 이 들어가야 한다.
 		boardService.insert(boardVo);
 		
 		return "redirect:/board";
