@@ -42,7 +42,7 @@
 				</table>
 				<div class="bottom">
 					<c:if test="${not empty authUser }">
-						<a href="${pageContext.request.contextPath }/board/wirte"
+						<a href="${pageContext.request.contextPath }/board/write"
 							id="new-book">글쓰기</a>
 					</c:if>
 

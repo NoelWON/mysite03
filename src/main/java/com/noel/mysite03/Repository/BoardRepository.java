@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.noel.mysite03.User.BoardVo;
+import com.noel.mysite03.User.UserVo;
 
 @Repository
 public class BoardRepository {
@@ -17,6 +18,8 @@ public class BoardRepository {
 		
 		return sqlSession.selectList("board.findAll");
 	}
+
+	
 	
 	
 	

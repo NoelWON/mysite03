@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.noel.mysite03.Repository.BoardRepository;
 import com.noel.mysite03.User.BoardVo;
+import com.noel.mysite03.User.UserVo;
 
 @Service
 public class BoardService {
@@ -18,4 +19,5 @@ public class BoardService {
 
 		return boardRepository.findAll();
 	}
+
 }

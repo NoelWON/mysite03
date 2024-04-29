@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.noel.mysite03.Repository.UserRepository;
 import com.noel.mysite03.Service.BoardService;
@@ -35,14 +36,30 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	@RequestMapping(value="wirte", method=RequestMethod.GET)
-	public String write(HttpServletRequest request) {
+	@RequestMapping(value="write", method=RequestMethod.GET)
+	public String write() {
+		System.out.println("글쓰기 진입");
+		return "board/write";
+	}
+	
+	@RequestMapping(value="write", method=RequestMethod.POST)
+	public String write(HttpServletRequest request,
+			@RequestParam(value="title", required=true, defaultValue="") String title,
+			@RequestParam(value="content", required=true, defaultValue="") String content,
+			BoardVo boardVo) {
+		
 		HttpSession session = request.getSession();
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		Long no = authUser.getNo();
-		UserVo userVo = userRepository.findByNo(no);
+		System.out.println("로그인된 유저:"+authUser);
 		
-		System.out.println("게시판글쓰기 유저 정보: "+ userVo);
-		return "board/write";
+		boardVo.setUserNo(authUser.getNo());
+		boardVo.setUserName(authUser.getName());
+		
+		System.out.println(boardVo+"제목: "+title+"내용: "+content);
+		// 유저 no, 제목, 내용이 들어가야함
+		// boardVo 에 user_no 와 username 이 들어가야 한다.
+//		boardService.insert(boardVo,title,content);
+		
+		return "redirect:/board/write";
 	}
 }
