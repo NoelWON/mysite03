@@ -23,7 +23,6 @@ public class GuestBookController {
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String index(Model model) {
 		List<GuestbookVo> list = guestbookService.getContentsList();
-		
 		System.out.println(list);
 		model.addAttribute("list",list);
 		return "guestbook/guestmain";

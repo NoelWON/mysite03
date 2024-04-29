@@ -40,6 +40,7 @@ public class UserController {
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login() {
+		System.out.println("로그인창 진입");
 		return "user/login";
 	}
 
@@ -59,7 +60,7 @@ public class UserController {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
 		// authUser 확인
-		System.out.println(authUser);
+		System.out.println("로그인된 유저"+authUser);
 		
 		return "redirect:/";
 	}
@@ -81,8 +82,8 @@ public class UserController {
 
 		UserVo userVo = userRepository.findByNo(no);
 		
-		// userVo 확인
-		System.out.println(userVo);
+		// 로그인된 유저 정보 no, 이름 확인
+		System.out.println("업데이트창: " + userVo);
 		
 		request.setAttribute("userVo", userVo);
 		

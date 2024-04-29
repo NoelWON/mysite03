@@ -3,10 +3,14 @@
 <configuration>
 	<typeAliases>
     	<typeAlias type="com.noel.mysite03.User.UserVo" alias="uservo"/>	
-    	<typeAlias type="com.noel.mysite03.User.GuestbookVo" alias="guestbookvo"/>	
+    	<typeAlias type="com.noel.mysite03.User.GuestbookVo" alias="guestbookvo"/>
+    	
+    	<typeAlias type="com.noel.mysite03.User.BoardVo" alias="boardvo"/>	
     </typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/guestbook.xml" />
+		
+		<mapper resource="mybatis/mappers/board.xml" />
 	</mappers>
 </configuration>
