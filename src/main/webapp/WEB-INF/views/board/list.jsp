@@ -36,13 +36,16 @@
 							<td>${board.userName }</td>
 							<td>${board.hitCount }</td>
 							<td>${board.regDate }</td>
-							<td><a href="" class="del">삭제</a></td>
+							<td><a href="" class="del" style="background-image:url(${pageContext.request.contextPath }/assets/images/recycle.png)">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board/wirte"
-						id="new-book">글쓰기</a>
+					<c:if test="${not empty authUser }">
+						<a href="${pageContext.request.contextPath }/board/wirte"
+							id="new-book">글쓰기</a>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
