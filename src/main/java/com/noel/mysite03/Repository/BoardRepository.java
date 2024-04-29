@@ -19,6 +19,11 @@ public class BoardRepository {
 		return sqlSession.selectList("board.findAll");
 	}
 
+	public boolean insert(BoardVo boardVo) {
+		System.out.println("레파지토리: "+boardVo);
+		return 1 == sqlSession.insert("board.insert",boardVo);
+	}
+
 	
 	
 	

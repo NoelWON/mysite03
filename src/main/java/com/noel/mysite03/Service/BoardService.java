@@ -20,4 +20,8 @@ public class BoardService {
 		return boardRepository.findAll();
 	}
 
+	public boolean insert(BoardVo boardVo) {
+		return boardRepository.insert(boardVo);
+	}
+
 }

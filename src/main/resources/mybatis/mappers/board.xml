@@ -11,4 +11,9 @@
 	]]>
 	</select>
 
+	<insert id="insert" parameterType="boardvo">
+		<![CDATA[
+		insert into board values(null, #{title },#{content },0,now(),#{userNo });
+		]]>
+	</insert>
 </mapper>
