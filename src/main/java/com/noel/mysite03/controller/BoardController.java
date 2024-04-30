@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,7 @@ public class BoardController {
 	public String home(Model model) {
 		
 		List<BoardVo> list = boardService.getContentsList();
-		System.out.println("게시판 가져오는 정보: "+list);
+//		System.out.println("게시판 가져오는 정보: "+list);
 		model.addAttribute("Blist",list);
 		return "board/list";
 	}
@@ -53,10 +54,19 @@ public class BoardController {
 		boardVo.setUserNo(authUser.getNo());
 		boardVo.setUserName(authUser.getName());
 		
-		System.out.println(boardVo);
+//		System.out.println(boardVo);
 		// 유저 no, 제목, 내용이 들어가야함
 		boardService.insert(boardVo);
 		
 		return "redirect:/board";
+	}
+	
+	@RequestMapping(value="view/{no}", method=RequestMethod.GET)
+	public String view(@PathVariable("no") Long no, Model model) {
+		
+		System.out.println(no);		
+		BoardVo boardVo = boardService.view(no);
+		model.addAttribute("boardVo",boardVo);
+		return "board/view";
 	}
 }

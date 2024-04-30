@@ -24,4 +24,9 @@ public class BoardService {
 		return boardRepository.insert(boardVo);
 	}
 
+	public BoardVo view(Long no) {
+		BoardVo boardVo = boardRepository.findByNo(no);
+		return boardVo;
+	}
+
 }

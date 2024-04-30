@@ -32,7 +32,7 @@
 					<c:forEach items="${Blist }" var="board" varStatus="status">
 						<tr>
 							<td>${board.no }</td>
-							<td><a href="">${board.title }</a></td>
+							<td><a href="${pageContext.request.contextPath }/board/view/${board.no }">${board.title }</a></td>
 							<td>${board.userName }</td>
 							<td>${board.hitCount }</td>
 							<td>${board.regDate }</td>

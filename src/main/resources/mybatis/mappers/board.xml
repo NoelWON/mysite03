@@ -16,4 +16,10 @@
 		insert into board values(null, #{title },#{content },0,now(),#{userNo });
 		]]>
 	</insert>
+	
+		<select id="findByNo" parameterType="long" resultType="boardvo">
+		<![CDATA[
+		select	no,	title, content from board where no = #{no }		
+		]]>		
+	</select>
 </mapper>

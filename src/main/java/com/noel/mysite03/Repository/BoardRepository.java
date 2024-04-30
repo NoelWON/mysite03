@@ -20,8 +20,11 @@ public class BoardRepository {
 	}
 
 	public boolean insert(BoardVo boardVo) {
-		System.out.println("레파지토리: "+boardVo);
 		return 1 == sqlSession.insert("board.insert",boardVo);
+	}
+
+	public BoardVo findByNo(Long no) {
+		return sqlSession.selectOne("board.findByNo", no);
 	}
 
 	
