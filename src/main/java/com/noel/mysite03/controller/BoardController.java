@@ -32,7 +32,7 @@ public class BoardController {
 	public String home(Model model) {
 		
 		List<BoardVo> list = boardService.getContentsList();
-		System.out.println("게시판 가져오는 정보: "+list);
+//		System.out.println("게시판 가져오는 정보: "+list);
 		model.addAttribute("Blist",list);
 		return "board/list";
 	}
@@ -64,9 +64,9 @@ public class BoardController {
 	@RequestMapping(value="view/{no}", method=RequestMethod.GET)
 	public String view(@PathVariable("no") Long no, Model model) {
 		
-		System.out.println(no);		
 		BoardVo boardVo = boardService.view(no);
 		model.addAttribute("boardVo",boardVo);
+		System.out.println(boardVo);
 		return "board/view";
 	}
 	
@@ -76,5 +76,10 @@ public class BoardController {
 		boardService.delete(no);
 		System.out.println("delete 성공");
 		return "redirect:/board";
+	}
+	
+	@RequestMapping(value="modify/{no}", method=RequestMethod.GET)
+	public String modify(@PathVariable("no") Long no) {
+		return "board/modify";
 	}
 }

@@ -49,7 +49,6 @@
 						<a href="${pageContext.request.contextPath }/board/write"
 							id="new-book">글쓰기</a>
 					</c:if>
-
 				</div>
 			</div>
 		</div>
