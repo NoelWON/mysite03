@@ -16,10 +16,17 @@
 		insert into board values(null, #{title },#{content },0,now(),#{userNo });
 		]]>
 	</insert>
-	
-		<select id="findByNo" parameterType="long" resultType="boardvo">
+
+	<select id="findByNo" parameterType="long" resultType="boardvo">
 		<![CDATA[
 		select	no,	title, content from board where no = #{no }		
-		]]>		
+		]]>
 	</select>
+
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+		delete from board where no = #{no } ;
+		]]>
+	</delete>
+
 </mapper>

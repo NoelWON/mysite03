@@ -38,7 +38,7 @@
 							<td>${board.regDate }</td>
 							<td>
 								<c:if test="${not empty authUser && authUser.no == board.userNo}">
-								<a href="" class="del" style="background-image:url(${pageContext.request.contextPath }/assets/images/recycle.png)">삭제</a>
+								<a href="${pageContext.request.contextPath }/board/delete/${board.no }" class="del" style="background-image:url(${pageContext.request.contextPath }/assets/images/recycle.png)">삭제</a>
 								</c:if>
 							</td>
 						</tr>

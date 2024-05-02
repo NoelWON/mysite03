@@ -27,6 +27,10 @@ public class BoardRepository {
 		return sqlSession.selectOne("board.findByNo", no);
 	}
 
+	public Boolean delete(Long no) {
+		return 1 == sqlSession.delete("board.delete",no);
+	}
+
 	
 	
 	

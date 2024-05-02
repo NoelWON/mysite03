@@ -69,4 +69,12 @@ public class BoardController {
 		model.addAttribute("boardVo",boardVo);
 		return "board/view";
 	}
+	
+	@RequestMapping(value="delete/{no}", method=RequestMethod.GET)
+	public String delete(@PathVariable("no") Long no) {
+		System.out.println("delete 진입");
+		boardService.delete(no);
+		System.out.println("delete 성공");
+		return "redirect:/board";
+	}
 }

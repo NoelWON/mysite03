@@ -29,4 +29,9 @@ public class BoardService {
 		return boardVo;
 	}
 
+	public Boolean delete(Long no) {
+		return boardRepository.delete(no);
+		
+	}
+
 }
