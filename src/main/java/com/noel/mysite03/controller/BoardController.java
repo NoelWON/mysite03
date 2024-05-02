@@ -32,7 +32,7 @@ public class BoardController {
 	public String home(Model model) {
 		
 		List<BoardVo> list = boardService.getContentsList();
-//		System.out.println("게시판 가져오는 정보: "+list);
+		System.out.println("게시판 가져오는 정보: "+list);
 		model.addAttribute("Blist",list);
 		return "board/list";
 	}
@@ -54,7 +54,7 @@ public class BoardController {
 		boardVo.setUserNo(authUser.getNo());
 		boardVo.setUserName(authUser.getName());
 		
-//		System.out.println(boardVo);
+		System.out.println(boardVo);
 		// 유저 no, 제목, 내용이 들어가야함
 		boardService.insert(boardVo);
 		

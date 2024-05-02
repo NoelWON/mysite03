@@ -4,7 +4,7 @@
 <mapper namespace="board">
 	<select id="findAll" resultType="boardvo">
 	<![CDATA[
-		select b.no, b.title, u.name as userName, b.content, b.hit, date_format(b.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate
+		select b.no, b.title, u.name as userName,b.user_no as userNo ,b.content, b.hit, date_format(b.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate
   			from user u, board b
  			where u.no = b.user_no
  			order by regDate desc

@@ -36,12 +36,16 @@
 							<td>${board.userName }</td>
 							<td>${board.hitCount }</td>
 							<td>${board.regDate }</td>
-							<td><a href="" class="del" style="background-image:url(${pageContext.request.contextPath }/assets/images/recycle.png)">삭제</a></td>
+							<td>
+								<c:if test="${not empty authUser && authUser.no == board.userNo}">
+								<a href="" class="del" style="background-image:url(${pageContext.request.contextPath }/assets/images/recycle.png)">삭제</a>
+								</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<div class="bottom">
-					<c:if test="${not empty authUser }">
+					<c:if test="${not empty authUser}">
 						<a href="${pageContext.request.contextPath }/board/write"
 							id="new-book">글쓰기</a>
 					</c:if>
