@@ -29,4 +29,10 @@
 		]]>
 	</delete>
 
+	<select id="modify" resultType="boardVo">
+		<![CDATA[
+		update board Set title = #{title }, content = #{content } where no = #{no }
+		]]>
+	</select>
+
 </mapper>

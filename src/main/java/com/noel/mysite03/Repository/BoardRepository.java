@@ -31,6 +31,10 @@ public class BoardRepository {
 		return 1 == sqlSession.delete("board.delete",no);
 	}
 
+	public Boolean modify(BoardVo boardVo) {
+		return 1 == sqlSession.update("board.modify",boardVo);
+	}
+
 	
 	
 	

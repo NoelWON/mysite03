@@ -34,4 +34,8 @@ public class BoardService {
 		
 	}
 
+	public Boolean modify(BoardVo boardVo) {
+		return boardRepository.modify(boardVo);
+	}
+
 }

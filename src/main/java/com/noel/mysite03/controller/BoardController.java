@@ -79,7 +79,27 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="modify/{no}", method=RequestMethod.GET)
-	public String modify(@PathVariable("no") Long no) {
+	public String modify(@PathVariable("no") Long no, Model model) {
+		// 글 정보 제목, 내용 가져와서 표시해줘야함
+		BoardVo boardVo = boardService.view(no);
+		model.addAttribute("boardVo",boardVo);
+		System.out.println(boardVo);
 		return "board/modify";
 	}
+	
+	@RequestMapping(value="modify/{no}", method=RequestMethod.POST)
+	public String modify(@PathVariable("no") Long no,
+			@RequestParam(value="title", required=true, defaultValue="")String title,
+			@RequestParam(value="content", required=true, defaultValue="")String content,
+			BoardVo boardVo) {
+		
+		System.out.println("수정POST 진입");
+		System.out.println("수정된 제목: "+title+" 수정된 내용: "+content+" 글번호: "+no);
+		System.out.println(boardVo);
+		
+		boardService.modify(boardVo);
+		return "redirect:/board";
+	}
+	
+	
 }
