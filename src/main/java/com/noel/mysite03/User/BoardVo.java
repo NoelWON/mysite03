@@ -6,7 +6,7 @@ public class BoardVo {
 	private String title;
 	private String content;
 	private String userName;
-	private int hitCount;
+	private int hit;
 	private String regDate;
 	private Long userNo;
 
@@ -41,12 +41,12 @@ public class BoardVo {
 		this.userName = userName;
 	}
 
-	public int getHitCount() {
-		return hitCount;
+	public int getHit() {
+		return hit;
 	}
 
-	public void setHitCount(int hitCount) {
-		this.hitCount = hitCount;
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 
 	public String getRegDate() {
@@ -67,7 +67,7 @@ public class BoardVo {
 	@Override
 	public String toString() {
 		return "\n BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", userName=" + userName
-				+ ", hitCount=" + hitCount + ", regDate=" + regDate + ", userNo=" + userNo + "]";
+				+ ", hit=" + hit + ", regDate=" + regDate + ", userNo=" + userNo + "]";
 	}
 
 

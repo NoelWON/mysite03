@@ -34,7 +34,7 @@
 							<td>${board.no }</td>
 							<td><a href="${pageContext.request.contextPath }/board/view/${board.no }">${board.title }</a></td>
 							<td>${board.userName }</td>
-							<td>${board.hitCount }</td>
+							<td>${board.hit }</td>
 							<td>${board.regDate }</td>
 							<td>
 								<c:if test="${not empty authUser && authUser.no == board.userNo}">

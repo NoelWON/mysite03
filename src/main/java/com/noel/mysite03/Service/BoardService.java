@@ -26,6 +26,9 @@ public class BoardService {
 
 	public BoardVo view(Long no) {
 		BoardVo boardVo = boardRepository.findByNo(no);
+		if(boardVo != null) {
+			boardRepository.updateHit(no);
+		}
 		return boardVo;
 	}
 

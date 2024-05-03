@@ -35,6 +35,11 @@ public class BoardRepository {
 		return 1 == sqlSession.update("board.modify",boardVo);
 	}
 
+	public int updateHit(Long no) {
+		return sqlSession.update("board.updateHit", no);
+		
+	}
+
 	
 	
 	

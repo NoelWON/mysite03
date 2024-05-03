@@ -35,4 +35,10 @@
 		]]>
 	</select>
 
+	<update id="updateHit" parameterType="long">
+		<![CDATA[
+		update board set hit = hit + 1 where no=#{no }
+		]]>
+	</update>
+
 </mapper>
